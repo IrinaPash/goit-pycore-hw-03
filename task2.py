@@ -16,15 +16,20 @@ quantity - кількість чисел, які потрібно вибрати
 
 import random
 
-def get_numbers_ticket(min, max, quantity):
-    if min < 1 or max > 1000:
-        return []
-    numbers = []
-    while len(numbers) < quantity:
-        num = random.randint(min, max)
-        if num not in numbers:
-            numbers.append(num)
+def get_numbers_ticket(min_num, max_num, quantity):
+    if min_num < 1 or max_num > 1000:
+        return [] 
+    if min_num >= max_num:
+        return [] 
+    if quantity < 1 or quantity > (max_num - min_num + 1):
+        return [] 
+
+    numbers = random.sample(range(min_num, max_num + 1), quantity)
     numbers.sort()
     return numbers
-lottery_numbers = get_numbers_ticket(1, 49, 6)
-print("Ваші лотерейні числа:", lottery_numbers)
+
+
+print("Ваші лотерейні числа:", get_numbers_ticket(1, 49, 6))
+print(get_numbers_ticket(10, 10, 10))  
+print(get_numbers_ticket(10, 15, 9))
+

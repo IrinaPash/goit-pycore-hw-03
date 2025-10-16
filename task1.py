@@ -8,10 +8,20 @@
 from datetime import datetime
 
 def get_days_from_today(date):
-    today = datetime.today()                 
-    input_date = datetime.strptime(date, "%Y-%m-%d") 
-    difference = today - input_date          
-    return difference.days                  
+    
+    try:
+     today = datetime.today()                 
+     input_date = datetime.strptime(date, "%Y-%m-%d") 
+     difference = today - input_date          
+     return difference.days   
 
+    except ValueError:
+        print("Некоректні дані: введіть дату у форматі 'РРРР-ММ-ДД'")
+        return None  
+    except TypeError:
+        print("Помилка: введіть дату у форматі 'РРРР-ММ-ДД'")
+        return None
 
 print(get_days_from_today("2020-10-09"))
+print(get_days_from_today("fghjkjl"))
+print(get_days_from_today("09-12-2020"))
